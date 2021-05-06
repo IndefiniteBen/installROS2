@@ -9,7 +9,7 @@ In order to run the script:
 
 The script roughly follows the 'Install ROS From Source' procedures from:
 
-<blockquote>https://index.ros.org/doc/ros2/Installation/dashing/Linux-Development-Setup/</blockquote>
+<blockquote>https://docs.ros.org/en/dashing/Installation/Ubuntu-Development-Setup.html</blockquote>
 
 Much of the code is taken from the dusty-nv Github repository jetson-containers. The dusty-nv jetson-containers should be used to create a Docker container for the ROS2 on the Jetson. For more information:
 
