@@ -1,5 +1,5 @@
 # installROS2
-Scripts to install ROS2 (foxy) on the NVIDIA Jetson Development Kits
+Scripts to install ROS2 (dashing) on the NVIDIA Jetson Development Kits
 
 This is a simple script to install ROS2 on the NVIDIA Jetson Development Kits.
 
@@ -9,7 +9,7 @@ In order to run the script:
 
 The script roughly follows the 'Install ROS From Source' procedures from:
 
-<blockquote>https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Development-Setup/</blockquote>
+<blockquote>https://index.ros.org/doc/ros2/Installation/dashing/Linux-Development-Setup/</blockquote>
 
 Much of the code is taken from the dusty-nv Github repository jetson-containers. The dusty-nv jetson-containers should be used to create a Docker container for the ROS2 on the Jetson. For more information:
 
@@ -26,6 +26,6 @@ Currently the NVIDIA Jetsons run Ubuntu 18.04. ROS2 foxy requires Ubuntu 18.04. 
 
 <h3>Release Notes</h3>
 
-<b>January, 2021</b>
+<b>May, 2021</b>
 * Tested on JetPack 4.5, L4T 32.5
-* Tested on Jetson Xavier NX
+* Tested on Jetson TX2
