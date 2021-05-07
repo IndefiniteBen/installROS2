@@ -57,7 +57,7 @@ sudo apt-get install -y --no-install-recommends \
 		libasio-dev \
 		libtinyxml2-dev \
 		libcunit1-dev
-# python3-rosinstall-generator not in ROS install instructions for foxy or dashing, used for L88
+# python3-rosinstall-generator not in ROS install instructions, used for L99
 # libpython3-dev also not in ROS install instructions for foxy or dashing (not sure what for)
 sudo rm -rf /var/lib/apt/lists/*
 
@@ -93,20 +93,29 @@ python3 -m pip install -U \
 #     sudo ln -s /usr/lib/aarch64-linux-gnu/libyaml-cpp.so.0.6.0 /usr/lib/aarch64-linux-gnu/libyaml-cpp.so.0.6
 
 printf "${LC}Make ROS directory (${ROS_ROOT}) and generate minimal install with rosinstall_generator${NC}\n" 
+# diagnostic_updater and image_transport used for RealSense SDK ROS wrapper
 # https://answers.ros.org/question/325245/minimal-ros2-installation/?answer=325249#post-id-325249
 sudo mkdir -p ${ROS_ROOT}/src && \
   cd ${ROS_ROOT}
-sudo sh -c "rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} example_interfaces > ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
+sudo sh -c "rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} diagnostic_updater image_transport example_interfaces > ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
 cat ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
     vcs import src < ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall"
 
 # ??? for Foxy on 18?
 # download unreleased packages     
-# sudo sh -c "git clone --branch ros2 https://github.com/Kukanani/vision_msgs ${ROS_ROOT}/src/vision_msgs && \
+# sudo sh -c "git clone --branch ros2 https://github.com/ros-perception/vision_msgs ${ROS_ROOT}/src/vision_msgs && \
+# 	git clone --branch ros2 https://github.com/ros-perception/vision_opencv ${ROS_ROOT}/src/vision_opencv && \
+#	git clone --branch ros2 https://github.com/ros-perception/image_common ${ROS_ROOT}/src/image_common && \
 #     git clone --branch ${ROS_DISTRO} https://github.com/ros2/demos demos && \
 #     cp -r demos/demo_nodes_cpp ${ROS_ROOT}/src && \
 #     cp -r demos/demo_nodes_py ${ROS_ROOT}/src && \
 #     rm -r -f demos"
+# no vision_msgs. vision_opencv for RealSense SDK ROS wrapper
+sudo sh -c "git clone --branch ros2 https://github.com/ros-perception/vision_opencv ${ROS_ROOT}/src/vision_opencv && \
+    git clone --branch ${ROS_DISTRO} https://github.com/ros2/demos demos && \
+    cp -r demos/demo_nodes_cpp ${ROS_ROOT}/src && \
+	cp -r demos/demo_nodes_py ${ROS_ROOT}/src && \
+    rm -r -f demos"
 
 # install dependencies using rosdep
 printf "${LC}Install dependencies for ROS2 ${ROS_DISTRO} using rosdep${NC}\n" 
