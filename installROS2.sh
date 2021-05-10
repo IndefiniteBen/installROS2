@@ -97,7 +97,7 @@ printf "${LC}Make ROS directory (${ROS_ROOT}) and generate minimal install with 
 # https://answers.ros.org/question/325245/minimal-ros2-installation/?answer=325249#post-id-325249
 sudo mkdir -p ${ROS_ROOT}/src && \
   cd ${ROS_ROOT}
-sudo sh -c "rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} diagnostic_updater image_transport example_interfaces > ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
+sudo sh -c "rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} rviz2 diagnostic_updater image_transport example_interfaces > ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
 cat ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
     vcs import src < ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall"
 
@@ -115,6 +115,7 @@ sudo sh -c "git clone --branch ros2 https://github.com/ros-perception/vision_ope
     git clone --branch ${ROS_DISTRO} https://github.com/ros2/demos demos && \
     cp -r demos/demo_nodes_cpp ${ROS_ROOT}/src && \
 	cp -r demos/demo_nodes_py ${ROS_ROOT}/src && \
+	cp -r demos/dummy_robot ${ROS_ROOT}/src && \
     rm -r -f demos"
 
 # install dependencies using rosdep
