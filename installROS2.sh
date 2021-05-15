@@ -97,7 +97,7 @@ printf "${LC}Make ROS directory (${ROS_ROOT}) and generate minimal install with 
 # https://answers.ros.org/question/325245/minimal-ros2-installation/?answer=325249#post-id-325249
 sudo mkdir -p ${ROS_ROOT}/src && \
   cd ${ROS_ROOT}
-sudo sh -c "rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} rviz2 diagnostic_updater image_transport example_interfaces > ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
+sudo sh -c "rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} pcl_conversions object_msgs ros2_message_filters rviz2 diagnostic_updater image_transport example_interfaces > ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
 cat ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
     vcs import src < ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall"
 
